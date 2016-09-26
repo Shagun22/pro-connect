@@ -1,16 +1,18 @@
-package com.dating.webpojo;
+package com.dating.model;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class UserDetails {
-	
+@Document(collection = "users")
+public class User {
+	@Id
+	private String id;
 	private String firstname;
 	private String lastname;
 	private String emailid;
 	private String location;
 	private String industry;
-	private String id;
+	
 	private String photo;
 	private String headline;
 	
@@ -62,8 +64,13 @@ public class UserDetails {
 	public void setHeadline(String headline) {
 		this.headline = headline;
 	}
+	@Override
+	public String toString() {
+		return "User [firstname=" + firstname + ", lastname=" + lastname + ", emailid=" + emailid + ", location="
+				+ location + ", industry=" + industry + ", id=" + id + ", photo=" + photo + ", headline=" + headline
+				+ "]";
+	}
 
-	
 	
 
 }

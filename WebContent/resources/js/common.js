@@ -1,15 +1,20 @@
-
+var userData = {};
 function getData() {
-	alert('hi');
 	
 	$.ajax({
-		headers: { 
+		/*headers: { 
 	        'Accept': 'application/json',
 	        'Content-Type': 'application/json' 
-	    },
+	    },*/
 		type : "POST",
 		url : "getLinkedinData",
-		data : "userData=" + JSON.stringify(userData),
+		data : JSON .stringify(userData),
+		contentType: 'application/json',
+        mimeType: 'application/json',
+        accept : 'application/json',
+        datatype : "html",
+  
+//		data : "userData=" + JSON.stringify(userData),
 		success : function(data) {
 			console.log("SUCCESS: ", data);
 		},
@@ -25,31 +30,29 @@ function getData() {
 
 
 
-var userData = {};
+
 
 function onLinkedInLoad() {
-	alert('hi');
+	
     IN.Event.on(IN, "auth", OnLinkedInAuth);
 }
 
 function OnLinkedInAuth() {
-	console.log("AUth");
+
     IN.API.Profile("me").result(ShowProfileData);
 }
 
 function ShowProfileData(profiles) {
-	console.log("Data");
+
 	var member = profiles.values[0];
-	userData['firstname'] = member.firstname;
+	userData['firstname'] = member.firstName;
 	userData['lastname'] = member.lastName;
-/*	userData['emailid'] = ;
-	userData['location'] = ;
-	userData['industry'] = ;*/
+	userData['emailid'] = member.emailID;
+	userData['location'] = member.location;
+	userData['industry'] = member.industry;
 	userData['id']= member.id;
 	userData['photo']= member.pictureUrl; 
 	userData['headline'] = member.headline; 
-	
-
 	console.log("User Data" );
 	console.log(userData);
 	getData();
@@ -60,7 +63,7 @@ function onSuccess(data) {
     console.log(data);
 }
 
-// Handle an error response from the API call
+
 function onError(error) {
     console.log(error);
 }

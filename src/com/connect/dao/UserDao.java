@@ -1,6 +1,6 @@
-package com.dating.dao;
+package com.connect.dao;
 
-import com.dating.model.User;
+import com.connect.model.User;
 
 public interface UserDao {
 

@@ -1,4 +1,4 @@
-package com.dating.controller;
+package com.connect.controller;
 
 
 
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dating.dao.UserDao;
-import com.dating.model.User;
-import com.dating.webpojo.UserDetails;
+import com.connect.dao.UserDao;
+import com.connect.model.User;
+import com.connect.webpojo.UserDetails;
 
 @Controller
 public class MainController {

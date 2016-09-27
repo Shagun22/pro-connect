@@ -1,4 +1,4 @@
-package com.dating.webpojo;
+package com.connect.webpojo;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 

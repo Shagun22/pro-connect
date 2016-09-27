@@ -1,4 +1,4 @@
-package com.dating.config;
+package com.connect.config;
 
 	import org.springframework.context.annotation.Bean;
 	import org.springframework.context.annotation.Configuration;

@@ -10,10 +10,7 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd">
  
-	<context:component-scan base-package="com.dating.controller" />
-	<context:component-scan base-package="com.dating.services" />
-	<context:component-scan base-package="com.dating.dao" />
-	<context:component-scan base-package="com.dating.controller" />
+	<context:component-scan base-package="com.connect" />
 	
 	  <!-- Factory bean that creates the Mongo instance -->
 	  

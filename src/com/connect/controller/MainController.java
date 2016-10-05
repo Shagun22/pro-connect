@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.connect.dao.UserDao;
@@ -33,25 +34,28 @@ public class MainController {
 		return new ModelAndView("welcome", "message", message);
 	}
 	
-	@RequestMapping("/linkedin")
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/getLinkedinData", method = RequestMethod.POST, consumes="application/json",produces = MediaType.APPLICATION_JSON_VALUE)
+	public String accessLinkedinData(@RequestBody User userDetails,HttpSession session, HttpServletRequest servletRequest, HttpServletResponse servletResponse){
+		
+		userDao.addUser(userDetails);
+
+		System.out.println("  Controller");
+		String message =  "<br><div style='text-align:center;'>"
+				+ "<h3>********** Hello World, Spring MVC Tutorial</h3>Congratulations !! You have successfully logged in through Linkedin. **********</div><br><br>";
+		return null;
+
+		
+	}
+	
+	@RequestMapping("/login-success")
 	public ModelAndView linkedinRedirect(){
 		
 		String message =  "<br><div style='text-align:center;'>"
 				+ "<h3>********** Hello World, Spring MVC Tutorial</h3>Congratulations !! You have successfully logged in through Linkedin. **********</div><br><br>";
-		return new ModelAndView("linkedin", "message", message);
-		
-	}
-	
-	@RequestMapping(value = "/getLinkedinData", method = RequestMethod.POST, consumes="application/json",produces = MediaType.APPLICATION_JSON_VALUE)
-	public UserDetails accessLinkedinData(@ModelAttribute User userDetails,HttpSession session, HttpServletRequest servletRequest, HttpServletResponse servletResponse){
-
-		userDao.addUser(userDetails);
-		System.out.println(userDao.toString());
-		System.out.println(userDetails.getFirstname());
-
-		System.out.println("Reached Controller");
-		
-		return null;
+		return new ModelAndView("LoginSuccessful", "message", message);
 		
 	}
 	

@@ -23,23 +23,31 @@ import org.springframework.data.mongodb.core.query.Update;
 public class UserDaoImpl implements UserDao {
 
 	@Autowired
-    private MongoTemplate mongoTemplate;
+	MongoOperations mongoOperations;
+	// private MongoTemplate mongoTemplate;
 	public static final String COLLECTION_NAME = "Abhishek";
 
-		
-		
-    
 	@Override
 	public void addUser(User user) {
-		  if (!mongoTemplate.collectionExists(User.class)) {
-            mongoTemplate.createCollection(User.class);
-	        }       
-		  	user.setId(UUID.randomUUID().toString());
-		  
-	        mongoTemplate.insert(user, COLLECTION_NAME);
-		
-		
-	}
-	}
+		// User user1 = new User();
+		/*
+		 * if (!mongoTemplate.collectionExists(User.class)) {
+		 * mongoTemplate.createCollection(User.class); }
+		 * user.setId(UUID.randomUUID().toString());
+		 */
+		// mongoTemplate.insert(user, COLLECTION_NAME);
 
+		/*
+		 * if (!mongoOperations.collectionExists(User.class)) {
+		 * mongoOperations.createCollection(User.class); }
+		 */
+		user.setId(UUID.randomUUID().toString());
+		System.out.println(user.toString());
+		try{
+		mongoOperations.save(user, COLLECTION_NAME);
+		} catch(Exception e){
+			e.printStackTrace();
+		}
 
+	}
+}
